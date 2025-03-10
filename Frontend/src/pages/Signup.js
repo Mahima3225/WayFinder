@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Auth.css';
 
 const Signup = () => {
-  const [formData, setFormData] = useState({ name:'', email: '', password: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const navigate = useNavigate();
 
   const handleChange = e =>
@@ -13,22 +14,49 @@ const Signup = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signup`, formData);
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/auth/signup`,
+        formData
+      );
       navigate('/');
     } catch (error) {
-      console.error(error.response.data);
+      console.error(error.response?.data || error.message);
     }
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <input name="name" placeholder="Name" onChange={handleChange} required /><br/>
-        <input name="email" type="email" placeholder="Email" onChange={handleChange} required /><br/>
-        <input name="password" type="password" placeholder="Password" onChange={handleChange} required /><br/>
-        <button type="submit">Signup</button>
-      </form>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2 className="auth-title">Signup</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            className="auth-input"
+            name="name"
+            placeholder="Name"
+            onChange={handleChange}
+            required
+          />
+          <input
+            className="auth-input"
+            name="email"
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+            required
+          />
+          <input
+            className="auth-input"
+            name="password"
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
+            required
+          />
+          <button type="submit" className="auth-button">
+            Signup
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
