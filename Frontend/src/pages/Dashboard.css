@@ -1,64 +1,80 @@
 /* frontend/src/pages/Dashboard.css */
 .dashboard-container {
-    min-height: 100vh;
-    background: linear-gradient(135deg, rgba(20,20,50,0.8), rgba(50,20,70,0.8)),
-            url(https://images.unsplash.com/photo-1597733336794-12d05021d510?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) no-repeat center center/cover;
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(20,20,50,0.8), rgba(50,20,70,0.8)),
+              url('https://source.unsplash.com/featured/1600x900/?technology,abstract') no-repeat center center/cover;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
 
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 2rem;
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.dashboard-header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  font-size: 1.2rem;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+.dashboard-content {
+  flex: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 2rem 0;
+}
+
+/* Animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  .dashboard-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    animation: fadeInDown 1s ease-in-out;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
   .dashboard-header h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+    font-size: 2rem;
   }
-  
   .dashboard-header p {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
-  
-  .dashboard-content {
-    max-width: 900px;
-    margin: 0 auto;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  }
-  
-  .divider {
-    border: 0;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.3);
-    margin: 2rem 0;
-  }
-  
-  /* Animation */
-  @keyframes fadeInDown {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Responsive styling */
-  @media (max-width: 600px) {
-    .dashboard-header h1 {
-      font-size: 2rem;
-    }
-    .dashboard-header p {
-      font-size: 1rem;
-    }
-  }
-  
+}

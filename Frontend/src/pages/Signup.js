@@ -18,7 +18,7 @@ const Signup = () => {
         `${process.env.REACT_APP_API_URL}/api/auth/signup`,
         formData
       );
-      navigate('/');
+      navigate('/login');
     } catch (error) {
       console.error(error.response?.data || error.message);
     }
