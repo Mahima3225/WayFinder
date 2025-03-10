@@ -11,19 +11,6 @@ const Login = () => {
   const handleChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-  //   try {
-  //     const res = await axios.post(
-  //       `${process.env.REACT_APP_API_URL}/api/auth/login`,
-  //       formData
-  //     );
-  //     localStorage.setItem('token', res.data.token);
-  //     navigate('/');
-  //   } catch (error) {
-  //     console.error(error.response?.data || error.message);
-  //   }
-  // };
 
   // frontend/src/pages/Login.js (snippet)
 const handleSubmit = async e => {

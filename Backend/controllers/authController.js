@@ -1,7 +1,9 @@
-// backend/controllers/authController.js
 const db = require('../config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
+// Remove this line entirely:
+// const token = jwt.sign({ id: user.id, username: user.name }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
 exports.signup = async (req, res, next) => {
   try {
@@ -23,9 +25,14 @@ exports.signup = async (req, res, next) => {
       [name, email, hash]
     );
     
-    // Create a JWT token
-    const token = jwt.sign({ id: result.insertId }, process.env.JWT_SECRET, { expiresIn: '1d' });
-    res.status(201).json({ token });
+    // Create a JWT token that includes the username
+    const token = jwt.sign(
+      { id: result.insertId, username: name },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    );
+    
+    res.status(201).json({ token, username: name });
   } catch (err) {
     next(err);
   }
@@ -47,9 +54,14 @@ exports.login = async (req, res, next) => {
       return res.status(400).json({ message: 'Invalid Credentials' });
     }
     
-    // Generate JWT token upon successful login
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-    res.json({ token });
+    // Generate JWT token upon successful login including username from the database
+    const token = jwt.sign(
+      { id: user.id, username: user.name },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    );
+    
+    res.json({ token, username: user.name });
   } catch (err) {
     next(err);
   }
